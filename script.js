@@ -12,15 +12,18 @@ const humidityElem = document.getElementById('humidity');
 const windElem = document.getElementById('wind');
 const forecastElem = document.getElementById('forecast');
 
+// Show loading indicator
 function showLoading() {
     loadingIndicator.style.display = 'block';
     weatherInfo.style.display = 'none';
 }
 
+// Hide loading indicator
 function hideLoading() {
     loadingIndicator.style.display = 'none';
 }
 
+// Clear weather information
 function clearWeatherInfo() {
     currentWeatherElem.textContent = "";
     humidityElem.textContent = "";
@@ -28,6 +31,7 @@ function clearWeatherInfo() {
     forecastElem.textContent = "";
 }
 
+// Fetch current weather
 function getCurrentWeather(lat, lon) {
     return fetch(`https://wttr.in/${lat},${lon}?format=%C+%t`)
         .then(response => response.text())
@@ -36,6 +40,7 @@ function getCurrentWeather(lat, lon) {
         });
 }
 
+// Fetch humidity
 function getHumidity(lat, lon) {
     return fetch(`https://wttr.in/${lat},${lon}?format=Humidity:+%h`)
         .then(response => response.text())
@@ -44,6 +49,7 @@ function getHumidity(lat, lon) {
         });
 }
 
+// Fetch wind information
 function getWind(lat, lon) {
     return fetch(`https://wttr.in/${lat},${lon}?format=Wind:+%w`)
         .then(response => response.text())
@@ -52,6 +58,7 @@ function getWind(lat, lon) {
         });
 }
 
+// Fetch forecast
 function getForecast(lat, lon) {
     return fetch(`https://wttr.in/${lat},${lon}?format=Next+Day+Forecast:+%f`)
         .then(response => response.text())
@@ -60,6 +67,7 @@ function getForecast(lat, lon) {
         });
 }
 
+// Fetch all weather data
 function getWeather(lat, lon) {
     showLoading();
     clearWeatherInfo();
@@ -82,6 +90,7 @@ function getWeather(lat, lon) {
     });
 }
 
+// Search for a location
 function searchLocation() {
     const location = searchInput.value.trim();
     if (location === "") {
@@ -105,11 +114,13 @@ function searchLocation() {
     });
 }
 
+// Get weather on map click
 map.on('click', function(e) {
     const { lat, lng } = e.latlng;
-    getWeather(lat, lng);
+    getWeather(lat, lng); // Fetch and display weather for clicked coordinates
 });
 
+// Event listeners for search
 searchButton.addEventListener('click', searchLocation);
 
 searchInput.addEventListener('keypress', function(e) {
