@@ -1,1 +1,116 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Map</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/4ZAnL4c5tE6J2Uouq3OD7ugDzjz8wPC2FQ5zy4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffe5e5, #fff);
+        }
+        #map {
+            height: calc(100vh - 200px);
+            border-radius: 15px;
+            border: 5px solid transparent;
+            background: linear-gradient(145deg, #f7f7f7, #ffffff);
+            box-shadow: 8px 8px 15px #d1d1d1, -8px -8px 15px #ffffff;
+            position: relative;
+        }
+        #weather-info {
+            background-color: #f8c8d5;
+            color: #5a2b3e;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 20px;
+            display: none;
+            line-height: 1.5;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+        }
+        #search-box {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            z-index: 1000;
+        }
+        #search-input {
+            height: 50px;
+            border-radius: 5px 0 0 5px;
+            border: 2px solid #d76e9c;
+            width: 300px;
+            box-shadow: 0 0 5px rgba(215, 110, 156, 0.5);
+        }
+        #search-button {
+            height: 50px;
+            border-radius: 0 5px 5px 0;
+            border: 2px solid #d76e9c;
+            background-color: #d76e9c;
+            color: white;
+            box-shadow: 0 0 5px rgba(215, 110, 156, 0.5);
+        }
+        #heading-bar {
+            background: linear-gradient(45deg, #ff6f91, #ff9a9e);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .weather-info-line {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="heading-bar">Weather Map</div>
+
+    <div id="search-box">
+        <input type="text" class="form-control" id="search-input" placeholder="Search for a location">
+        <button class="btn" id="search-button">Search</button>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="weather-info" class="container">
+        <div class="weather-info-line" id="current-weather"></div>
+        <div class="weather-info-line" id="humidity"></div>
+        <div class="weather-info-line" id="wind"></div>
+        <div class="weather-info-line" id="forecast"></div>
+    </div>
+
+    <div id="loading">Loading...</div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+pm1pbNE+1l9E5cNRF1+h7Ci40xQ7" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <!-- External JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
