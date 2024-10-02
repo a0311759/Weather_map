@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,16 +14,15 @@
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
-            overflow: hidden;
             background: linear-gradient(135deg, #ffe5e5, #fff);
         }
         #map {
-            height: calc(100vh - 200px);
+            height: calc(100vh - 250px); /* Adjust height to be smaller */
             border-radius: 15px;
             border: 5px solid transparent;
             background: linear-gradient(145deg, #f7f7f7, #ffffff);
             box-shadow: 8px 8px 15px #d1d1d1, -8px -8px 15px #ffffff;
-            position: relative;
+            margin-bottom: 10px; /* Add some space below the map */
         }
         #weather-info {
             background-color: #f8c8d5;
@@ -32,9 +30,8 @@
             padding: 15px;
             border-radius: 8px;
             font-size: 16px;
-            margin-top: 20px;
-            display: none;
             line-height: 1.5;
+            display: none;
         }
         #loading {
             position: absolute;
